@@ -1,0 +1,103 @@
+/* 智慧景区运营管理系统 - 全局样式（简洁实用优先） */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; color: #333; background: #f0f2f5; font-size: 14px; }
+button { cursor: pointer; font-family: inherit; }
+input, select, textarea { font-family: inherit; font-size: 14px; padding: 8px 10px; border: 1px solid #d9d9d9; border-radius: 4px; width: 100%; }
+input:focus, select:focus, textarea:focus { outline: none; border-color: #2f6fed; }
+label { display: block; margin: 10px 0 4px; color: #555; }
+table { width: 100%; border-collapse: collapse; background: #fff; }
+th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #eee; white-space: nowrap; }
+th { background: #fafafa; color: #666; font-weight: 600; }
+tr:hover td { background: #f7faff; }
+
+/* ===== 登录页 ===== */
+.login-body { display: flex; align-items: center; justify-content: center; min-height: 100vh; background: linear-gradient(135deg, #2f6fed, #5b9dff); }
+.login-card { background: #fff; width: 400px; max-width: 92vw; padding: 32px 36px; border-radius: 10px; box-shadow: 0 8px 30px rgba(0,0,0,.18); }
+.login-title { font-size: 22px; text-align: center; color: #2f6fed; }
+.login-sub { text-align: center; color: #999; margin: 6px 0 18px; font-size: 13px; }
+.tabs { display: flex; border-bottom: 2px solid #eee; margin-bottom: 10px; }
+.tab { flex: 1; padding: 10px; background: none; border: none; font-size: 15px; color: #888; border-bottom: 2px solid transparent; margin-bottom: -2px; }
+.tab.active { color: #2f6fed; border-bottom-color: #2f6fed; font-weight: 600; }
+.tip { margin-top: 12px; font-size: 12px; color: #aaa; line-height: 1.6; }
+.msg { margin-top: 12px; padding: 8px 12px; border-radius: 4px; font-size: 13px; }
+.msg-err { background: #fff1f0; color: #cf1322; border: 1px solid #ffa39e; }
+.msg-ok { background: #f6ffed; color: #389e0d; border: 1px solid #b7eb8f; }
+
+/* ===== 布局 ===== */
+.layout { display: flex; min-height: 100vh; }
+.sidebar { width: 200px; background: #1f2d3d; color: #fff; flex-shrink: 0; }
+.brand { font-size: 20px; font-weight: 700; text-align: center; padding: 20px 0; letter-spacing: 4px; border-bottom: 1px solid rgba(255,255,255,.08); }
+#menu a { display: block; padding: 13px 22px; color: #bfcbd9; text-decoration: none; font-size: 14px; }
+#menu a:hover { background: rgba(255,255,255,.06); color: #fff; }
+#menu a.active { background: #2f6fed; color: #fff; }
+.main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.topbar { height: 56px; background: #fff; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+#page-title { font-size: 16px; font-weight: 600; }
+.user-box { display: flex; align-items: center; gap: 12px; color: #666; }
+.content { padding: 20px 24px; }
+
+/* ===== 通用组件 ===== */
+.card { background: #fff; border-radius: 6px; padding: 18px 20px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+.card h3 { font-size: 15px; margin-bottom: 12px; color: #333; border-left: 3px solid #2f6fed; padding-left: 8px; }
+.btn { border: 1px solid #d9d9d9; background: #fff; padding: 8px 16px; border-radius: 4px; font-size: 14px; }
+.btn:hover { border-color: #2f6fed; color: #2f6fed; }
+.btn-primary { background: #2f6fed; color: #fff; border-color: #2f6fed; }
+.btn-primary:hover { background: #1f5cdb; color: #fff; }
+.btn-danger { background: #f5222d; color: #fff; border-color: #f5222d; }
+.btn-danger:hover { background: #cf1322; color: #fff; }
+.btn-sm { padding: 4px 10px; font-size: 13px; }
+.btn-block { width: 100%; margin-top: 16px; }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.toolbar { display: flex; gap: 10px; flex-wrap: wrap; align-items: end; margin-bottom: 14px; }
+.toolbar .field { width: 170px; }
+.toolbar label { margin: 0 0 4px; font-size: 13px; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 12px; }
+.badge-gray { background: #f0f0f0; color: #666; }
+.badge-blue { background: #e6f0ff; color: #2f6fed; }
+.badge-green { background: #f6ffed; color: #389e0d; }
+.badge-orange { background: #fff7e6; color: #d46b08; }
+.badge-red { background: #fff1f0; color: #cf1322; }
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 14px; }
+.stat-card { background: #fff; border-radius: 6px; padding: 16px; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+.stat-card .num { font-size: 26px; font-weight: 700; color: #2f6fed; margin-top: 6px; }
+.stat-card .label { color: #888; font-size: 13px; }
+.notice { background: #fffbe6; border: 1px solid #ffe58f; color: #ad6800; padding: 10px 14px; border-radius: 4px; margin: 10px 0; line-height: 1.6; }
+.notice-danger { background: #fff1f0; border-color: #ffa39e; color: #cf1322; }
+.empty { text-align: center; color: #999; padding: 30px 0; }
+.pager { display: flex; gap: 10px; align-items: center; justify-content: flex-end; margin-top: 12px; color: #888; }
+.row { display: flex; gap: 12px; }
+.row > * { flex: 1; }
+.text-muted { color: #999; font-size: 12px; }
+.mt { margin-top: 14px; }
+
+/* 票种卡片 */
+.ticket-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; }
+.ticket-card { background: #fff; border-radius: 8px; padding: 18px; box-shadow: 0 1px 4px rgba(0,0,0,.08); border-top: 3px solid #2f6fed; }
+.ticket-card h4 { font-size: 17px; }
+.ticket-card .price { color: #f5222d; font-size: 24px; font-weight: 700; margin: 8px 0; }
+.ticket-card .price small { font-size: 13px; color: #999; font-weight: 400; }
+.ticket-card p { color: #777; font-size: 13px; margin: 4px 0; }
+
+/* 弹窗 */
+.modal-mask { position: fixed; inset: 0; background: rgba(0,0,0,.45); display: flex; align-items: center; justify-content: center; z-index: 100; }
+.modal-mask[hidden], .toast[hidden] { display: none; }
+.modal { background: #fff; border-radius: 8px; width: 520px; max-width: 94vw; max-height: 88vh; overflow: auto; }
+.modal-head { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; border-bottom: 1px solid #eee; font-weight: 600; }
+.modal-close { background: none; border: none; font-size: 22px; color: #999; }
+.modal-body { padding: 18px 20px; }
+.modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px; }
+
+/* 提示条 */
+.toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,.75); color: #fff; padding: 10px 22px; border-radius: 6px; z-index: 200; font-size: 14px; }
+
+/* 热力图 */
+.heatmap { overflow-x: auto; }
+.heatmap table { background: none; }
+.heatmap td, .heatmap th { padding: 0; border: 1px solid #eee; width: 26px; height: 22px; text-align: center; font-size: 11px; white-space: nowrap; }
+.heatmap th { background: #fafafa; padding: 4px 6px; }
+.heatmap .day-label { padding: 4px 8px; background: #fafafa; }
+.hm-cell { cursor: default; }
+
+/* 首页 */
+.home-section h3 { margin-bottom: 8px; }
+.home-section div { line-height: 1.9; color: #555; white-space: pre-wrap; }

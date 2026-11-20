@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>登录 - 智慧景区运营管理系统</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="login-body">
+  <div class="login-card">
+    <h1 class="login-title">智慧景区运营管理系统</h1>
+    <p class="login-sub">纯PC端 · 无硬件对接 · 人工登记</p>
+
+    <div class="tabs">
+      <button id="tab-login" class="tab active" type="button">登 录</button>
+      <button id="tab-register" class="tab" type="button">游客注册</button>
+    </div>
+
+    <form id="login-form">
+      <label>用户名</label>
+      <input id="login-username" autocomplete="username" required>
+      <label>密码</label>
+      <input id="login-password" type="password" autocomplete="current-password" required>
+      <button class="btn btn-primary btn-block" type="submit">登 录</button>
+      <p class="tip">默认账号：admin/admin123（管理员）· seller/seller123（售票员）· tourist/tourist123（游客）</p>
+    </form>
+
+    <form id="register-form" hidden>
+      <label>用户名 *</label>
+      <input id="reg-username" required>
+      <label>密码 *（至少6位）</label>
+      <input id="reg-password" type="password" minlength="6" required>
+      <label>姓名 *（实名，注册后不可自行修改）</label>
+      <input id="reg-realname" required>
+      <label>身份证号</label>
+      <input id="reg-idcard">
+      <label>手机号</label>
+      <input id="reg-phone">
+      <button class="btn btn-primary btn-block" type="submit">注 册</button>
+    </form>
+
+    <div id="login-msg" class="msg" hidden></div>
+  </div>
+
+  <script>
+    const $ = id => document.getElementById(id);
+    const msg = $('login-msg');
+    function showMsg(text, ok) {
+      msg.hidden = false; msg.textContent = text;
+      msg.className = 'msg ' + (ok ? 'msg-ok' : 'msg-err');
+    }
+    $('tab-login').onclick = () => switchTab(true);
+    $('tab-register').onclick = () => switchTab(false);
+    function switchTab(isLogin) {
+      $('tab-login').classList.toggle('active', isLogin);
+      $('tab-register').classList.toggle('active', !isLogin);
+      $('login-form').hidden = !isLogin;
+      $('register-form').hidden = isLogin;
+      msg.hidden = true;
+    }
+    async function post(path, body) {
+      const res = await fetch('/api/auth' + path, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || '请求失败');
+      return data;
+    }
+    $('login-form').onsubmit = async e => {
+      e.preventDefault();
+      try {
+        await post('/login', { username: $('login-username').value.trim(), password: $('login-password').value });
+        location.href = '/index.html';
+      } catch (err) { showMsg(err.message, false); }
+    };
+    $('register-form').onsubmit = async e => {
+      e.preventDefault();
+      try {
+        await post('/register', {
+          username: $('reg-username').value.trim(), password: $('reg-password').value,
+          real_name: $('reg-realname').value.trim(), id_card: $('reg-idcard').value.trim(),
+          phone: $('reg-phone').value.trim(),
+        });
+        showMsg('注册成功，请登录', true);
+        switchTab(true);
+      } catch (err) { showMsg(err.message, false); }
+    };
+  </script>
+</body>
+</html>
